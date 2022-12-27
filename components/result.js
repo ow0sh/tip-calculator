@@ -31,7 +31,11 @@ export default function Result(props) {
   const [tipAmount, setTipAmount] = useState(0);
 
   useEffect(() => {
-    if (!props.numberOfPeople) return;
+    if (!props.numberOfPeople) {
+      setTipAmount(0);
+      setTotalAmount(0);
+      return;
+    }
     setTotalAmount(props.bill / props.numberOfPeople);
     setTipAmount(((props.bill / 100) * props.tip) / 4);
   }, [props.bill, props.numberOfPeople, props.tip]);
