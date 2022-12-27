@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+
+@layer {
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button,
+    input[type='number'] {
+        -webkit-appearance: none;
+        margin: 0;
+        -moz-appearance: textfield !important;
+    }
+
+    html {
+        @apply h-full;
+    }
+
+    body {
+        @apply h-full bg-light-grayish-cyan;
+    }
+
+    #__next {
+        @apply flex flex-col justify-center content-center flex-wrap h-full;
+    }
+
+    .active {
+        --tw-text-opacity: 1;
+        color: rgb(0 73 77 / var(--tw-text-opacity))!important;
+        --tw-bg-opacity: 1;
+        background-color: rgb(38 192 171 / var(--tw-bg-opacity))!important;
+    }
+}
