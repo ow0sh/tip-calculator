@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Cell(props) {
   function handlerClick() {
@@ -31,10 +31,8 @@ function Cell(props) {
 }
 
 export default function SelectTip(props) {
-  const [custom, setCustom] = useState("");
-
   function handler(value) {
-    setCustom("");
+    props.customHandler("");
 
     props.handler(value, "tip");
   }
@@ -45,7 +43,7 @@ export default function SelectTip(props) {
       document.getElementById(`${arr[i]}`).classList.remove("active");
     }
 
-    setCustom(e.target.value);
+    props.customHandler(e.target.value);
 
     props.handler(e.target.value, "tip");
   }
@@ -73,7 +71,8 @@ export default function SelectTip(props) {
                   handlerCustom(e);
                 }}
                 type={"number"}
-                value={custom}
+                value={props.value}
+                id={"customValue"}
               />
             </td>
           </tr>

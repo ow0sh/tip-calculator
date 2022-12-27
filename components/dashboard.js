@@ -6,9 +6,22 @@ import NumberOfPeople from "./numberOfPeople";
 import Result from "./result";
 
 export default function Dashboard() {
-  const [bill, setBill] = useState("0");
-  const [numberOfPeople, setNumberOfPeople] = useState(0);
+  const [bill, setBill] = useState("");
+  const [numberOfPeople, setNumberOfPeople] = useState("");
   const [tip, setTip] = useState(0);
+
+  const [custom, setCustom] = useState("");
+
+  function reset() {
+    setBill("");
+    setNumberOfPeople("");
+    setTip(0);
+    setCustom("");
+    const arr = [5, 10, 15, 25, 50];
+    for (let i = 0; i < 5; i++) {
+      document.getElementById(`${arr[i]}`).classList.remove("active");
+    }
+  }
 
   function valueHandler(e, type) {
     switch (type) {
@@ -48,11 +61,16 @@ export default function Dashboard() {
             onChange={(e) => {
               valueHandler(e, "bill");
             }}
+            value={bill}
             placeholder={"0"}
           />
         </div>
-        <SelectTip handler={valueHandler} />
-        <NumberOfPeople handler={valueHandler} />
+        <SelectTip
+          value={custom}
+          customHandler={(value) => setCustom(value)}
+          handler={valueHandler}
+        />
+        <NumberOfPeople value={numberOfPeople} handler={valueHandler} />
       </section>
       <section
         className={"w-[400px] h-[400px] bg-very-dark-cyan rounded-xl"}
@@ -60,7 +78,12 @@ export default function Dashboard() {
           console.log(bill, numberOfPeople, tip);
         }}
       >
-        <Result bill={bill} tip={tip} numberOfPeople={numberOfPeople} />
+        <Result
+          resetHandler={reset}
+          bill={bill}
+          tip={tip}
+          numberOfPeople={numberOfPeople}
+        />
       </section>
     </main>
   );

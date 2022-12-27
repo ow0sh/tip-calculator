@@ -31,22 +31,39 @@ export default function Result(props) {
   const [tipAmount, setTipAmount] = useState(0);
 
   useEffect(() => {
+    if (!props.numberOfPeople) return;
     setTotalAmount(props.bill / props.numberOfPeople);
     setTipAmount(((props.bill / 100) * props.tip) / 4);
   }, [props.bill, props.numberOfPeople, props.tip]);
 
   return (
-    <div className={"px-[30px] py-[60px]"}>
-      <ResultRow
-        text={"Tip Amount"}
-        amount={tipAmount}
-        numberOfPeople={props.numberOfPeople}
-      />
-      <ResultRow
-        text={"Total"}
-        amount={totalAmount}
-        numberOfPeople={props.numberOfPeople}
-      />
+    <div
+      className={
+        "flex justify-between flex-col px-[30px] pt-[50px] pb-[40px] h-full"
+      }
+    >
+      <section>
+        <ResultRow
+          text={"Tip Amount"}
+          amount={tipAmount}
+          numberOfPeople={props.numberOfPeople}
+        />
+        <ResultRow
+          text={"Total"}
+          amount={totalAmount}
+          numberOfPeople={props.numberOfPeople}
+        />
+      </section>
+      <section>
+        <button
+          className={
+            "rounded w-full h-[50px] hover:bg-light-grayish-cyan transition-colors bg-strong-cyan text-very-dark-cyan"
+          }
+          onClick={props.resetHandler}
+        >
+          RESET
+        </button>
+      </section>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import Dashboard from "../components/dashboard";
 
-//865 450
 export default function App() {
   return (
     <>

@@ -48,6 +48,7 @@ export default function NumberOfPeople(props) {
           handlerChange(e);
         }}
         placeholder={"0"}
+        value={props.value}
       />
     </div>
   );
